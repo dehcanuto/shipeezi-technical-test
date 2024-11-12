@@ -87,7 +87,7 @@ Implement CRUD operations for user accounts. Allow users to edit their own profi
 
 Download Figma file to get access to the design that you should follow. Then, open Figma on web or desktop, create a new file and import this file into it.
 
-[FIGMA][https://drive.google.com/file/d/1WzCBGoseV_A2KW4xcP2NHmR13ITxWCc D/view?usp=drive_link]
+[FIGMA][https://drive.google.com/file/d/1WzCBGoseV_A2KW4xcP2NHmR13ITxWCcD/view?usp=drive_link]
 
 ## Evaluation Criteria
 
