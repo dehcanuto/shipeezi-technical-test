@@ -6,14 +6,17 @@ import { BaseButton } from "../../../components/atoms";
 import { FormField } from "../../../components/molecules";
 import { handleLogin } from "../../../services/auth";
 import { LoginCredentials } from "../../../models/auth";
+import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
+    const navigate = useNavigate();
     const { register, handleSubmit } = useForm<FieldValues>();
     
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
         await handleLogin(data as LoginCredentials)
             .then(res => {
                 console.log('onSubmit then', res);
+                navigate("/dashboard");
             })
             .catch(error => {
                 console.error('onSubmit catch', error);

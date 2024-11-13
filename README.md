@@ -38,7 +38,7 @@ yarn install
 #### 3.1 Run Frontend:
 
 ```bash
-yarn dev
+yarn start
 ```
 
 The project will be presented through the link [http://localhost:3000](http://localhost:3000).
