@@ -1,8 +1,10 @@
+import { GerencialLayout } from "../../components";
+
 function DashboardPage() {
   return (
-    <div>
+    <GerencialLayout>
       <h2>DashboardPage</h2>
-    </div>
+    </GerencialLayout>
   );
 };
 

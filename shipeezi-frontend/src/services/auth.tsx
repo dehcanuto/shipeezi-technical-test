@@ -2,12 +2,13 @@ import api from './api';
 
 import { LoginCredentials } from '../models/auth';
 import { UserInfos } from '../models/user';
+import { LoginResponse } from '../context/AuthContext';
+import { AxiosResponse } from 'axios';
 
 export const handleLogin = async ({ email, password }: LoginCredentials) => {
   try {
-    const response = await api.post('/auth/login', { email, password });
-    if (response.data.access_token) localStorage.setItem('access_token', response.data.access_token);
-    return response;
+    const response: AxiosResponse<LoginResponse> = await api.post<LoginResponse>('/auth/login', { email, password });
+    return response.data;
   } catch (error) {
     console.error("Erro de autenticação", error);
     return null;

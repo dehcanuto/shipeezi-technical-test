@@ -1,5 +1,4 @@
-"use client"
-
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
@@ -7,17 +6,23 @@ import { BaseButton } from "../../../components/atoms";
 import { FormField } from "../../../components/molecules";
 import { handleLogin } from "../../../services/auth";
 import { LoginCredentials } from "../../../models/auth";
-import { useState } from "react";
+import { LoginResponse, useAuth } from "../../../context/AuthContext";
 
 const SignIn = () => {
     const navigate = useNavigate();
+    const { login } = useAuth();
     const [loading, setLoading] = useState<boolean>(false);
     const { register, handleSubmit } = useForm<FieldValues>();
     
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
         setLoading(true);
         await handleLogin(data as LoginCredentials)
-            .then(() => navigate("/dashboard"))
+            .then((res: LoginResponse | null) => {
+                if (res) {
+                    login(res);
+                    navigate("/dashboard");
+                }
+            })
             .catch(error => console.error('onSubmit catch', error))
             .finally(() => {
                 setLoading(false);
