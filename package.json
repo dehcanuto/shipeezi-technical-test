@@ -3,8 +3,8 @@
     "private": true,
     "workspaces": ["shipeezi-backend", "shipeezi-frontend"],
     "scripts": {
-        "dev": "yarn workspace shipeezi-backend start & yarn workspace shipeezi-frontend start",
-        "backend": "yarn workspace shipeezi-backend start",
+        "dev": "yarn workspace shipeezi-backend start:dev & yarn workspace shipeezi-frontend start",
+        "backend": "yarn workspace shipeezi-backend start:dev",
         "frontend": "yarn workspace shipeezi-frontend start"
     }
 }
