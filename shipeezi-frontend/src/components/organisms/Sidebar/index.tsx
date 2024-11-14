@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 
 const Sidebar = () => {
-    const location = useLocation(); // Obtém a localização da URL atual
+    const location = useLocation();
 
     const getLinkClass = (path: string) => {
         return location.pathname === path ? 
