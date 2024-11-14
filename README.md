@@ -35,13 +35,23 @@ yarn install
 
 ### 3. Run project
 
+Both projects can be started from the root folder of project.
+
 #### 3.1 Run Frontend:
 
 ```bash
-yarn start
+yarn frontend
 ```
 
-The project will be presented through the link [http://localhost:3000](http://localhost:3000).
+The frontend project will be presented through the link [http://localhost:3000](http://localhost:3000).
+
+#### 3.2 Run Backend:
+
+```bash
+yarn backend
+```
+
+The backend project will be presented through the link [http://localhost:4000](http://localhost:4000).
 
 ## Requirements
 

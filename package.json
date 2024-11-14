@@ -1,0 +1,10 @@
+{
+    "name": "shipeezi-test",
+    "private": true,
+    "workspaces": ["shipeezi-backend", "shipeezi-frontend"],
+    "scripts": {
+        "dev": "yarn workspace shipeezi-backend start & yarn workspace shipeezi-frontend start",
+        "backend": "yarn workspace shipeezi-backend start",
+        "frontend": "yarn workspace shipeezi-frontend start"
+    }
+}
