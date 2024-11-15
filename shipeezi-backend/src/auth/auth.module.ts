@@ -6,14 +6,14 @@ import { PassportModule } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { JwtStrategy } from './jwt.strategy';
-import { User } from 'src/user/user.model';
+import { Users } from 'src/users/users.model';
 import { ConfigModule } from 'src/config/config.module';
-import { UserService } from 'src/user/user.service';
+import { UsersService } from 'src/users/users.service';
 
 @Module({
   imports: [
     ConfigModule,
-    SequelizeModule.forFeature([User]),
+    SequelizeModule.forFeature([Users]),
     PassportModule,
     JwtModule.register({
       secret: 'NBIGajvcNqgMtkLbnWJGHKxzuUhmZyDH', // process.env.JWT_SECRET,
@@ -21,7 +21,7 @@ import { UserService } from 'src/user/user.service';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, UserService, JwtStrategy],
+  providers: [AuthService, UsersService, JwtStrategy],
   exports: [AuthService],
 })
 export class AuthModule {}

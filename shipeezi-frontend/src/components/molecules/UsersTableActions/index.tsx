@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { BsThreeDots } from "react-icons/bs";
 
-const UsersTableActions = () => {
+const UsersTableActions = ({ id }: { id: string }) => {
     const [show, setShow] = useState<boolean>(false);
     
     return (
@@ -9,7 +10,7 @@ const UsersTableActions = () => {
                 type="button"
                 onClick={() => setShow(!show)}
                 className="flex items-center justify-center p-2 bg-white text-green-500 font-bold border rounded">
-                ...
+                <BsThreeDots />
             </button>
             {show && (
                 <div className="absolute top-full right-0 w-60 mt-2 bg-white rounded-lg shadow-lg">

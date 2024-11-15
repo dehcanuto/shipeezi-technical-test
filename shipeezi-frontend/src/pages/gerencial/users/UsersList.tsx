@@ -1,6 +1,27 @@
+import { useEffect, useState } from "react";
 import { GerencialLayout, UsersTable } from "../../../components";
+import { handleListUsers } from "../../../services/users";
+import { UsersListResponse } from "../../../models/user";
 
 function UsersListPage() {
+  const [loading, setLoading] = useState<boolean>(true);
+  const [users, setUsers] = useState<UsersListResponse[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await handleListUsers()
+        .then((res) => setUsers(res || []))
+        .catch(error => {
+            console.error('handleListUsers catch', error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <GerencialLayout>
       <main className="flex flex-col gap-12">
@@ -15,12 +36,8 @@ function UsersListPage() {
         <div className="">
           <UsersTable
             header={['User', 'Last update', 'added']}
-            items={[{
-              name: 'Evelyn Harper',
-              username: 'evelynh',
-              lastUpdate: '16/08/2023',
-              added: '16/08/2013'
-            }]}
+            items={users}
+            loading={loading}
           />
         </div>
       </main>

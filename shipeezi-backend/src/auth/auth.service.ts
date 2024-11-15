@@ -3,12 +3,12 @@ import { JwtService } from '@nestjs/jwt';
 import { InjectModel } from '@nestjs/sequelize';
 import * as bcrypt from 'bcryptjs';
 import { UserType } from 'src/models/user';
-import { User } from 'src/user/user.model';
+import { Users } from 'src/users/users.model';
 
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectModel(User) private userModel: typeof User,
+    @InjectModel(Users) private userModel: typeof Users,
     private jwtService: JwtService,
   ) {}
 
@@ -17,7 +17,7 @@ export class AuthService {
     return this.userModel.create(data);
   }
 
-  async validateUser(email: string, password: string): Promise<User | null> {
+  async validateUser(email: string, password: string): Promise<Users | null> {
     const user = await this.userModel.findOne({ where: { email } });
     if (user && (await bcrypt.compare(password, user.password))) {
       return user;
@@ -25,7 +25,7 @@ export class AuthService {
     return null;
   }
 
-  async login(user: User) {
+  async login(user: Users) {
     return {
       user: {
         fullName: user.fullName,
