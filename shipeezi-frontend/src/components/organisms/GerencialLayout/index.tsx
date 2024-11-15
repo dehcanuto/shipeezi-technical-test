@@ -13,7 +13,7 @@ const GerencialLayout = ({
             <Navbar />
             <div className="flex min-h-screen bg-gray-100">
                 <Sidebar />
-                <div className="p-8">
+                <div className="min-h-screen w-full p-8">
                   {children}
                 </div>
             </div>

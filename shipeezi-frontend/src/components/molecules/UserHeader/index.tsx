@@ -35,7 +35,7 @@ const UserHeader = () => {
                     {userInfos?.initials}
             </button>
             {show && (
-                <div className="absolute top-100 right-0 w-60 rounded-lg shadow-lg">
+                <div className="absolute top-100 right-0 w-60 mt-2 bg-white rounded-lg shadow-lg">
                     <div className="flex flex-col py-6 divide-y gap-2">
                         <div className="flex py-2 px-4 gap-2">
                             <span className="p-2 bg-green-500 text-white font-bold rounded">
