@@ -35,7 +35,7 @@ yarn install
 
 ### 3. Run project
 
-Both projects can be started from the root folder of project.
+Both projects can be started from the root folder of project. Recommended using a terminal for each project.
 
 #### 3.1 Run Frontend:
 
@@ -51,7 +51,7 @@ The frontend project will be presented through the link [http://localhost:3000](
 yarn backend
 ```
 
-The backend project will be presented through the link [http://localhost:4000](http://localhost:4000).
+The backend project will be presented through the link [http://localhost:8080](http://localhost:8080).
 
 ## Requirements
 
