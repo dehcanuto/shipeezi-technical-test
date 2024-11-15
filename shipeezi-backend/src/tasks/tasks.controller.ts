@@ -17,6 +17,13 @@ export class TasksController {
   constructor(private readonly tasksService: TasksService) {}
 
   @UseGuards(JwtAuthGuard)
+  @Get()
+  async findAll(): Promise<any[]> {
+    const tasks = await this.tasksService.findAllTasks();
+    return tasks;
+  }
+
+  @UseGuards(JwtAuthGuard)
   @Post()
   async createTask(@Body() createTaskDto: CreateTaskDto) {
     return this.tasksService.create(createTaskDto);

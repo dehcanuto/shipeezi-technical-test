@@ -4,9 +4,9 @@
 /dist
 /node_modules
 /build
+.cache/
 
 # dependencies
-/node_modules
 /.pnp
 .pnp.js
 
@@ -68,3 +68,5 @@ pids
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
+# eslint cache
+.eslintcache

@@ -1,7 +1,7 @@
 import { SequelizeModule } from '@nestjs/sequelize';
 import { Module } from '@nestjs/common';
 
-// Using 'freemysqlhosting.net' for free database host
+// Using 'filess.io' for free database host
 // for this test i will not use .env
 @Module({
   imports: [

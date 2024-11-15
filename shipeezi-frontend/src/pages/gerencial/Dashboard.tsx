@@ -1,7 +1,29 @@
+import { useEffect, useState } from "react";
 import { GerencialLayout } from "../../components";
 import ToDoList from "../../components/organisms/ToDoList";
+import { handleListTasks } from "../../services/tasks";
 
 function DashboardPage() {
+  const [loading, setLoading] = useState<boolean>(true);
+  const [users, setUsers] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await handleListTasks()
+        .then((res) => {
+          console.log('handleListTasks', res)
+        })
+        .catch(error => {
+            console.error('handleListTasks catch', error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <GerencialLayout>
       <main className="flex flex-col gap-12">

@@ -9,6 +9,10 @@ import { UpdateTaskDto } from './dto/update-task.dto';
 export class TasksService {
   constructor(@InjectModel(Task) private readonly taskModel: typeof Task) {}
 
+  async findAllTasks(): Promise<Task[]> {
+    return this.taskModel.findAll();
+  }
+
   async create(createTaskDto: CreateTaskDto): Promise<Task> {
     const taskData = {
       title: createTaskDto.title,
