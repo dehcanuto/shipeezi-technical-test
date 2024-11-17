@@ -2,11 +2,14 @@ import { useEffect } from "react";
 
 import { ViewTaskPropTypes } from "./type";
 import { RenderTags, formatDate, getStatusName } from "../../../misc";
-import { CommentCard, Modal, NewComment } from "../..";
+import { CommentCard } from "../..";
+import Modal from "../../molecules/Modal";
+import NewComment from "../NewComment";
 
 const ViewTask = ({ show, handleShow }: ViewTaskPropTypes) => {
 
     useEffect(() => {
+        // handleListComments
         console.log('useEffect', show);
     }, [show]);
     

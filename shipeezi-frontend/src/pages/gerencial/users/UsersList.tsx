@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { GerencialLayout, UsersTable } from "../../../components";
+import { UsersTable } from "../../../components";
+import GerencialLayout from "../../../components/organisms/GerencialLayout";
 import { handleListUsers } from "../../../hooks/users";
 import { UsersListResponse } from "../../../models/user";
 

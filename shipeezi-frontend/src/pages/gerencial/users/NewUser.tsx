@@ -1,4 +1,4 @@
-import { GerencialLayout } from "../../../components";
+import GerencialLayout from "../../../components/organisms/GerencialLayout";
 
 function NewUserPage() {
   return (

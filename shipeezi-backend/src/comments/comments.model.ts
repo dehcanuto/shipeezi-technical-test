@@ -15,13 +15,7 @@ export class Comments extends Model {
     type: DataType.TEXT,
     allowNull: false,
   })
-  title: string;
-
-  @Column({
-    type: DataType.TEXT,
-    allowNull: false,
-  })
-  content: string;
+  comment: string;
 
   @ForeignKey(() => Task)
   @Column({

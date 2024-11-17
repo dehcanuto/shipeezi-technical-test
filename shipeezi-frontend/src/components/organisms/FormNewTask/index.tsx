@@ -7,7 +7,8 @@ import { handleCreateTask } from "../../../hooks/tasks";
 import { statusTasks, tagsTasks } from "../../../enums";
 import { TagsTasksPropTypes } from "../../../enums/tags.tasks";
 
-import { FormField, FormFieldSelect, FormFieldTagSelect, Modal } from "../../molecules";
+import Modal from "../../molecules/Modal";
+import { FormField, FormFieldSelect, FormFieldTagSelect } from "../../molecules";
 import { FormFieldSelectOptionsPropTypes } from "../../molecules/FormFieldSelect/type";
 import { FormNewTaskPropsType } from "./type";
 

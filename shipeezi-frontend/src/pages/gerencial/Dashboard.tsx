@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 
 import { handleListTasks } from "../../hooks/tasks";
-import { GerencialLayout } from "../../components";
-import { ToDoList } from "../../components/organisms";
+
+import GerencialLayout from "../../components/organisms/GerencialLayout";
+
 import { TodoCardPropsType } from "../../components/molecules/TodoCard/type";
+import ToDoList from "../../components/organisms/ToDoList";
 
 function DashboardPage() {
   const [loading, setLoading] = useState<boolean>(true);

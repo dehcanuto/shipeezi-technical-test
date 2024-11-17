@@ -1,13 +1,26 @@
 import { useState } from "react";
+
 import { BaseAvatar } from "../../atoms";
+import { handleCreateComment } from "../../../hooks/comments";
 
 const NewComment = ({ taskId }: { taskId: number }) => {
     const [message, setMessage] = useState<string>('');
     
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const handleKeyDown = async (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter" && message.trim()) {
             console.log('envia comentário', message.trim(), taskId);
-            setMessage("");
+
+            await handleCreateComment({
+                comment: message.trim(),
+                taskId: taskId
+            })
+            .then((res) => {
+                console.log('handleCreateComment', res);
+            })
+            .catch(error => console.error('onSubmit catch', error))
+            .finally(() => {
+                setMessage("");
+            });
         }
     };
 

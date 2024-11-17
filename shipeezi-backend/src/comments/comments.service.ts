@@ -12,8 +12,7 @@ export class CommentsService {
 
   async create(createCommentDto: CreateCommentDto): Promise<Comments> {
     const data = {
-      title: createCommentDto.title,
-      content: createCommentDto.content,
+      comment: createCommentDto.comment,
       taskId: createCommentDto.taskId,
       userId: createCommentDto.userId,
     };

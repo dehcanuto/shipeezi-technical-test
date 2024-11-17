@@ -5,7 +5,8 @@ import { ToDoListPropTypes } from "./type";
 import { TodoCardPropsType } from "../../molecules/TodoCard/type";
 
 import { TodoCard } from "../../molecules";
-import { FormNewTask, ViewTask } from "../..";
+import FormNewTask from "../FormNewTask";
+import ViewTask from "../ViewTask";
 
 const ToDoList = ({ title, tasks }: ToDoListPropTypes) => {    
     const [showForm, setShowForm] = useState<boolean>(false);
