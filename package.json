@@ -6,6 +6,7 @@
     "private": true,
     "workspaces": ["shipeezi-backend", "shipeezi-frontend"],
     "scripts": {
+        "base": "yarn workspace shipeezi-backend install & yarn workspace shipeezi-frontend install",
         "dev": "yarn workspace shipeezi-backend start:dev & yarn workspace shipeezi-frontend start",
         "backend": "yarn workspace shipeezi-backend start:dev",
         "frontend": "yarn workspace shipeezi-frontend start"

@@ -5,8 +5,10 @@ import {
   DataType,
   ForeignKey,
   BelongsTo,
+  HasMany,
 } from 'sequelize-typescript';
 import { Users } from '../users/users.model';
+import { Comments } from '../comments/comments.model';
 import { TaskStatus } from 'src/enums/task-status.enum';
 
 @Table
@@ -31,10 +33,10 @@ export class Task extends Model {
   status: string;
 
   @Column({
-    type: DataType.TEXT,
+    type: DataType.JSON,
     allowNull: true,
   })
-  tags: string[];
+  tags: number[];
 
   @Column({
     type: DataType.INTEGER,
@@ -61,4 +63,7 @@ export class Task extends Model {
 
   @BelongsTo(() => Users, 'assignee')
   assignedTo: Users;
+
+  @HasMany(() => Comments, 'taskId')
+  comments: Comment[];
 }

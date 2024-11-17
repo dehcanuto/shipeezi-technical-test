@@ -1,27 +1,52 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
+import { Sequelize } from 'sequelize';
 
 import { Task } from './task.model';
+import { Users } from '../users/users.model';
+
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 
 @Injectable()
 export class TasksService {
-  constructor(@InjectModel(Task) private readonly taskModel: typeof Task) {}
+  constructor(
+    @InjectModel(Task)
+    private readonly taskModel: typeof Task,
+  ) {}
 
   async findAllTasks(): Promise<Task[]> {
-    return this.taskModel.findAll();
+    return this.taskModel.findAll({
+      include: [
+        {
+          model: Users,
+          as: 'assignedTo',
+          attributes: ['id', 'fullName', 'username'],
+        },
+      ],
+      attributes: {
+        include: [
+          [
+            Sequelize.literal(
+              `(SELECT COUNT(*) FROM Comments WHERE Comments.taskId = Task.id)`,
+            ),
+            'commentsCount',
+          ],
+        ],
+      },
+      group: ['Task.id'],
+    });
   }
 
-  async create(createTaskDto: CreateTaskDto): Promise<Task> {
+  async create(createTaskDto: CreateTaskDto): Promise<any> {
     const taskData = {
       title: createTaskDto.title,
       description: createTaskDto.description,
-      status: createTaskDto.status ?? 0,
+      status: Number(createTaskDto.status) ?? 0,
       tags: createTaskDto.tags ?? [],
-      storyPoints: createTaskDto.storyPoints,
+      storyPoints: Number(createTaskDto.storyPoints),
       createdBy: createTaskDto.createdBy,
-      assignee: createTaskDto.assignee,
+      assignee: Number(createTaskDto.assignee),
     };
 
     return this.taskModel.create(taskData);
