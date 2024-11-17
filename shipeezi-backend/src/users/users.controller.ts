@@ -6,10 +6,14 @@ import {
   Delete,
   Body,
   NotFoundException,
+  UseGuards,
+  Post,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserResponseDto } from './dto/user-response.dto';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Controller('users')
 export class UserController {
@@ -35,6 +39,12 @@ export class UserController {
       throw new NotFoundException('Usuário não encontrado');
     }
     return user;
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Post()
+  async createUser(@Body() createUserDto: CreateUserDto) {
+    return this.userService.register(createUserDto);
   }
 
   @Patch(':id')

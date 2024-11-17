@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
 import { UsersTable } from "../../../components";
 import GerencialLayout from "../../../components/organisms/GerencialLayout";
 import { handleListUsers } from "../../../hooks/users";
@@ -30,9 +32,11 @@ function UsersListPage() {
           <h2 className="text-4xl font-semibold">
             User Management
           </h2>
-          <button type="button" className="px-4 bg-green-500 text-white rounded-lg">
+          <Link
+            to="/users/new"
+            className="flex items-center px-4 bg-green-500 text-white rounded-lg">
             New User
-          </button>
+          </Link>
         </div>
         <div className="">
           <UsersTable

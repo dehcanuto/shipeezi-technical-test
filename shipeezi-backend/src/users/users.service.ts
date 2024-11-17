@@ -4,6 +4,7 @@ import { InjectModel } from '@nestjs/sequelize';
 
 import { Users } from './users.model';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -23,6 +24,10 @@ export class UsersService {
 
   async findUserByEmail(email: string): Promise<Users | null> {
     return this.userModel.findOne({ where: { email } });
+  }
+
+  async register(createUserDto: CreateUserDto) {
+    return this.userModel.create(createUserDto);
   }
 
   async updateUser(id: number, updateUserDto: UpdateUserDto): Promise<Users> {
