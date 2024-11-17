@@ -1,3 +1,5 @@
+import { format } from 'date-fns';
+
 function getInitials(fullName: string): string {
     const names = fullName.split(" ");
     if (names.length >= 2) {
@@ -21,4 +23,9 @@ function formatDate(dateString: string) {
   return `${day}/${month}/${year}`;
 }
 
-export { getInitials, getFirstName, formatDate }
+function formatDateComment(dateString: string) {
+  const formattedDate = format(dateString, "MMMM d, yyyy 'at' h:mm a");
+  return formattedDate;
+}
+
+export { getInitials, getFirstName, formatDate, formatDateComment }

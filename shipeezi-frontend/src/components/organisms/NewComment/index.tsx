@@ -2,20 +2,22 @@ import { useState } from "react";
 
 import { BaseAvatar } from "../../atoms";
 import { handleCreateComment } from "../../../hooks/comments";
+import { Comments } from "../../../models/comments";
+import { useAuth } from "../../../context/AuthContext";
 
-const NewComment = ({ taskId }: { taskId: number }) => {
+const NewComment = ({ taskId, update }: { taskId: number; update: (data: Comments[]) => void }) => {
+    const { user } = useAuth();
     const [message, setMessage] = useState<string>('');
     
     const handleKeyDown = async (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter" && message.trim()) {
-            console.log('envia comentário', message.trim(), taskId);
-
             await handleCreateComment({
                 comment: message.trim(),
                 taskId: taskId
             })
-            .then((res) => {
+            .then((res) => { 
                 console.log('handleCreateComment', res);
+                if (res) update(res)
             })
             .catch(error => console.error('onSubmit catch', error))
             .finally(() => {
@@ -26,9 +28,11 @@ const NewComment = ({ taskId }: { taskId: number }) => {
 
     return (
         <div className="flex gap-2">
-            <div>
-                <BaseAvatar name="Name User" size="large" />
-            </div>
+            {user && (
+                <div>
+                    <BaseAvatar name={user.fullName} size="large" />
+                </div>
+            )}
             <input
                 type="text"
                 placeholder="Add a comment"

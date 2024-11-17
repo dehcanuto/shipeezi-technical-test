@@ -21,7 +21,7 @@ export class CommentsController {
   async create(
     @Body() createCommentDto: CreateCommentDto,
     @Request() req,
-  ): Promise<Comments> {
+  ): Promise<Comments[]> {
     const userId = req.user.userId;
     return this.commentsService.create({ ...createCommentDto, userId: userId });
   }

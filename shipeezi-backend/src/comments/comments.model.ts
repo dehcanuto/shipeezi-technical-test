@@ -36,4 +36,7 @@ export class Comments extends Model {
 
   @BelongsTo(() => Users)
   user: Users;
+
+  @BelongsTo(() => Users, { as: 'commentedBy', foreignKey: 'userId' })
+  commentedBy: Users;
 }

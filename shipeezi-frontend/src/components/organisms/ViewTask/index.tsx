@@ -1,16 +1,30 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { ViewTaskPropTypes } from "./type";
 import { RenderTags, formatDate, getStatusName } from "../../../misc";
 import { CommentCard } from "../..";
 import Modal from "../../molecules/Modal";
 import NewComment from "../NewComment";
+import { handleListComments } from "../../../hooks/comments";
+import { Comments } from "../../../models/comments";
 
 const ViewTask = ({ show, handleShow }: ViewTaskPropTypes) => {
+    const [comments, setComments] = useState<Comments[]>([]);
+
+    const fetchCommentsList = async (taskId: number) => {
+        await handleListComments(taskId)
+            .then((res) => {
+                console.log('handleListComments', res, taskId);
+                setComments(res || [])
+            })
+          .catch(error => {
+              console.error('handleListComments catch', error);
+          })
+    };
 
     useEffect(() => {
-        // handleListComments
-        console.log('useEffect', show);
+        setComments([]);
+        if (show.view && show.data) fetchCommentsList(show.data.id);
     }, [show]);
     
     return <>
@@ -30,13 +44,22 @@ const ViewTask = ({ show, handleShow }: ViewTaskPropTypes) => {
                                 </div>
                             </div>
                             <div className="flex flex-col py-3 gap-5">
-                                <NewComment taskId={show.data.id} />
-                                <div className="">
-                                    <CommentCard
-                                        name="Fulano Tal"
-                                        comment="Please, check my design file on this link."
-                                        date="August 28, 2024 at 10:10 AM" />
-                                </div>
+                                <NewComment
+                                    taskId={show.data.id}
+                                    update={setComments}
+                                />
+                                {comments.length > 0 && (
+                                    <div className="max-h-28 overflow-y-scroll">
+                                        <div className="flex flex-col gap-2">
+                                            {comments.map(item => (
+                                                <CommentCard
+                                                    name={item.commentedBy.fullName}
+                                                    comment={item.comment}
+                                                    date={item.createdAt} />
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         </div>
                         <div className="flex flex-col min-w-72 divide-y p-4 gap-4">
