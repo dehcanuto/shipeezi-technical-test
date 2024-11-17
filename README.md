@@ -15,6 +15,7 @@ Develop a web application for task management with user authentication and colla
 *  [NodeJS](https://nodejs.org/en/docs/) - Ambiente de execução JavaScript
 *  [React](https://react.dev/learn) - Framework web with TypeScript
 *  [NestJS](https://docs.nestjs.com/) - Framework backend with TypeScript
+*  [Sequelize](https://sequelize.org/docs/v6/getting-started/) - Framework TypeScript and Node.js ORM for MySQL
 *  [MySQL](https://dev.mysql.com/doc/) - Database with Sequelize ORM
 *  [Jest](https://jestjs.io/pt-BR/docs/getting-started) - Framework for backend unit tests
 *  [Tailwind CSS](https://tailwindcss.com/docs) - Framework para estilização
@@ -29,8 +30,10 @@ $ git clone git@github.com:dehcanuto/shipeezi-technical-test.git
 
 ### 2. Install dependencies
 
+Run this command in the root folder and it will install the dependencies in each project.
+
 ```bash
-yarn install
+yarn base
 ```
 
 ### 3. Run project
