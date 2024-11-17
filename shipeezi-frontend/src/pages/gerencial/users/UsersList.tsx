@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { GerencialLayout, UsersTable } from "../../../components";
-import { handleListUsers } from "../../../services/users";
+import { handleListUsers } from "../../../hooks/users";
 import { UsersListResponse } from "../../../models/user";
 
 function UsersListPage() {

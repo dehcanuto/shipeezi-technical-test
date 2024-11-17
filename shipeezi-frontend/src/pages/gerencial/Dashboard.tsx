@@ -1,17 +1,28 @@
 import { useEffect, useState } from "react";
+
+import { handleListTasks } from "../../hooks/tasks";
 import { GerencialLayout } from "../../components";
 import ToDoList from "../../components/organisms/ToDoList";
-import { handleListTasks } from "../../services/tasks";
+import { TodoCardPropsType } from "../../components/molecules/TodoCard/type";
 
 function DashboardPage() {
   const [loading, setLoading] = useState<boolean>(true);
-  const [users, setUsers] = useState<any[]>([]);
+
+  const [backlogTasks, setBacklogTasks] = useState<TodoCardPropsType[]>([]);
+  const [todoTasks, setTodoTasks] = useState<TodoCardPropsType[]>([]);
+  const [processTasks, setProcessTasks] = useState<TodoCardPropsType[]>([]);
+  const [doneTasks, setDoneTasks] = useState<TodoCardPropsType[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       await handleListTasks()
-        .then((res) => {
-          console.log('handleListTasks', res)
+        .then((tasks) => {
+          if (tasks) {
+            setBacklogTasks(tasks.filter(task => task.status === 0));
+            setTodoTasks(tasks.filter(task => task.status === 1));
+            setProcessTasks(tasks.filter(task => task.status === 2));
+            setDoneTasks(tasks.filter(task => task.status === 3));
+          }
         })
         .catch(error => {
             console.error('handleListTasks catch', error);
@@ -33,10 +44,10 @@ function DashboardPage() {
           </h2>
         </div>
         <div className="flex">
-          <ToDoList title="Backlog Tasks" />
-          <ToDoList title="To Do Tasks" />
-          <ToDoList title="In Process" />
-          <ToDoList title="Done" />
+          <ToDoList title="Backlog Tasks" tasks={backlogTasks} />
+          <ToDoList title="To Do Tasks" tasks={todoTasks} />
+          <ToDoList title="In Process" tasks={processTasks} />
+          <ToDoList title="Done" tasks={doneTasks} />
         </div>
       </main>
     </GerencialLayout>

@@ -3,6 +3,7 @@ import { FormFieldSelectPropTypes } from "./type";
 const FormFieldSelect = ({
         label,
         name,
+        options,
         register,
         rules
     }: FormFieldSelectPropTypes) => {
@@ -15,7 +16,11 @@ const FormFieldSelect = ({
                 id={name}
                 className="block w-full py-2 px-3 mt-1 bg-green-500/10 focus:outline-none rounded-md disabled:bg-gray-100"
                 {...(register && register(name, rules))}>
-                <option>teste</option>
+                {options.map(item => (
+                    <option value={item.value}>
+                        {item.label}
+                    </option>
+                ))}
             </select>
         </div>
     );

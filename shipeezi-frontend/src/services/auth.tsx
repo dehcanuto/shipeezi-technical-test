@@ -1,9 +1,9 @@
+import { AxiosResponse } from 'axios';
 import api from './api';
 
 import { LoginCredentials } from '../models/auth';
 import { UserInfos } from '../models/user';
 import { LoginResponse } from '../context/AuthContext';
-import { AxiosResponse } from 'axios';
 
 export const handleLogin = async ({ email, password }: LoginCredentials) => {
   try {

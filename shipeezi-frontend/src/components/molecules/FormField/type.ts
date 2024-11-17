@@ -5,6 +5,7 @@ export interface FormFieldPropTypes {
     name: string;
     type?: string;
     placeholder: string;
+    rows?: number;
     rules?: RegisterOptions;
     register: UseFormRegister<FieldValues>;
 }

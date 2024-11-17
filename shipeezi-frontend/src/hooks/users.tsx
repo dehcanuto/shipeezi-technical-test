@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 
-import api from './api';
+import api from '../services/api';
 import { UsersListResponse } from '../models/user';
 
 export const handleListUsers = async () => {

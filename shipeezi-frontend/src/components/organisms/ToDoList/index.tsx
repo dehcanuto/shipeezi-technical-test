@@ -1,11 +1,11 @@
+import { Key, useState } from "react";
 import { BsFillPlusCircleFill, BsThreeDots } from "react-icons/bs";
 
 import { ToDoListPropTypes } from "./type";
 import { TodoCard } from "../../molecules";
 import { FormNewTask } from "..";
-import { useState } from "react";
 
-const ToDoList = ({ title }: ToDoListPropTypes) => {    
+const ToDoList = ({ title, tasks }: ToDoListPropTypes) => {    
     const [showForm, setShowForm] = useState<boolean>(false);
     return (
         <div>
@@ -18,8 +18,10 @@ const ToDoList = ({ title }: ToDoListPropTypes) => {
                         <BsThreeDots />
                     </button>
                 </div>
-                <div className="flex flex-col gap-4">
-                    <TodoCard />
+                <div className="flex flex-col gap-2">
+                    {tasks.map((task: any, key: Key) => 
+                        <TodoCard key={key} {...task} />
+                    )}
                     <button
                         type="button"
                         onClick={() => setShowForm(true)}
