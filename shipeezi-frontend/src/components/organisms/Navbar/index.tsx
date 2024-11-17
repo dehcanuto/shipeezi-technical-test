@@ -1,4 +1,4 @@
-import UserHeader from "../../molecules/UserHeader";
+import { UserHeader } from "../../";
 
 const Navbar = () => {
     return (

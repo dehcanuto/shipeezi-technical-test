@@ -3,17 +3,15 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 import { handleListUsers } from "../../../hooks/users";
 import { handleCreateTask } from "../../../hooks/tasks";
-import { FormField, FormFieldSelect, FormFieldTagSelect, Modal } from "../../molecules";
+
 import { statusTasks, tagsTasks } from "../../../enums";
 import { TagsTasksPropTypes } from "../../../enums/tags.tasks";
+
+import { FormField, FormFieldSelect, FormFieldTagSelect, Modal } from "../../molecules";
 import { FormFieldSelectOptionsPropTypes } from "../../molecules/FormFieldSelect/type";
+import { FormNewTaskPropsType } from "./type";
 
-interface ModalPropTypes {
-    show: boolean;
-    handleShow: () => void;
-}
-
-const FormNewTask = ({ show, handleShow }: ModalPropTypes) => {
+const FormNewTask = ({ show, handleShow }: FormNewTaskPropsType) => {
     const { register, handleSubmit, reset } = useForm<FieldValues>();
     const [loading, setLoading] = useState<boolean>(false);
     const [selectedTags, setSelectedTags] = useState<TagsTasksPropTypes[]>([]);
@@ -61,7 +59,8 @@ const FormNewTask = ({ show, handleShow }: ModalPropTypes) => {
             show={show}
             action={handleSubmit(onSubmit)}
             handleShow={() => handleShow()}
-            loading={loading}>
+            loading={loading}
+            viewAction>
             <form onSubmit={handleSubmit(onSubmit)} className="flex divide-x gap-3">
                 <div className="flex flex-col min-w-96 p-2 gap-3">
                     <FormField

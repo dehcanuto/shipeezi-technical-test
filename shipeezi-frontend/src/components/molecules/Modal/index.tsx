@@ -1,16 +1,25 @@
 import { MdClose } from "react-icons/md";
-import { BaseButton } from "../../atoms";
+import { BaseButton } from "../..";
 
 interface ModalPropTypes {
     title: string;
     show: boolean;
+    viewAction?: boolean;
     action?: () => void;
     handleShow: () => void;
     children: React.ReactNode;
-    loading: boolean;
+    loading?: boolean;
 }
 
-const Modal = ({ title, show, action, handleShow, children, loading }: ModalPropTypes) => {    
+const Modal = ({
+    title,
+    show,
+    action,
+    handleShow,
+    children,
+    viewAction = false,
+    loading = false
+    }: ModalPropTypes) => {    
     return <>
         {show && (
             <div className="flex fixed inset-0 items-center justify-center bg-slate-900/30">
@@ -25,12 +34,14 @@ const Modal = ({ title, show, action, handleShow, children, loading }: ModalProp
                     <div className="px-3">
                         {children}
                     </div>
-                    <div className="flex py-4 px-8 items-center justify-end border-t">
-                        <div className="flex gap-3">
-                            <BaseButton label="Cancel" variant="text" click={handleShow} />
-                            <BaseButton label="Create" click={action} loading={loading} />
+                    {viewAction && (
+                        <div className="flex py-4 px-8 items-center justify-end border-t">
+                            <div className="flex gap-3">
+                                <BaseButton label="Cancel" variant="text" click={handleShow} />
+                                <BaseButton label="Create" click={action} loading={loading} />
+                            </div>
                         </div>
-                    </div>
+                    )}
                 </div>
             </div>
         )}

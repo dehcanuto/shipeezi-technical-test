@@ -2,7 +2,7 @@ export interface TodoCardPropsType {
     id: number;
     title: string;
     description: string;
-    status: number;
+    status: 0 | 1 | 2 | 3;
     tags: string;
     storyPoints: number;
     createdBy: number;
@@ -15,4 +15,5 @@ export interface TodoCardPropsType {
     commentsCount: number;
     createdAt: string;
     updatedAt: string;
+    handleShow?: () => void;
 }

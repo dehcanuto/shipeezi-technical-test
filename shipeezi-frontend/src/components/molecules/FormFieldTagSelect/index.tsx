@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { MdClose } from "react-icons/md";
 
 import { FormFieldTagSelectPropTypes } from "./type";

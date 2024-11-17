@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { useAuth } from "../../../context/AuthContext";
-import { getFirstName, getInitials } from "../../../misc/format";
+import { getFirstName, getInitials } from "../../../misc";
 
 interface UserInfosHeader {
     initials: string;

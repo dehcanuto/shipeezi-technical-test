@@ -1,4 +1,4 @@
-import { formatDate } from "../../../misc/format";
+import { formatDate } from "../../../misc";
 import UsersTableActions from "../UsersTableActions";
 import { TablePropTypes } from "./type";
 
