@@ -12,10 +12,7 @@ const SignUp = () => {
     
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
         await handleRegister(data as UserInfos)
-            .then(res => {
-                console.log('onSubmit then', res);
-                navigate("/signin");
-            })
+            .then(() => navigate("/signin"))
             .catch(error => {
                 console.error('onSubmit catch', error);
             })

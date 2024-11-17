@@ -18,7 +18,6 @@ export const handleLogin = async ({ email, password }: LoginCredentials) => {
 export const handleRegister = async (data: UserInfos) => {
   try {
     const response = await api.post('/auth/register', data);
-    console.log('handleRegister', response);
     return response;
   } catch (error) {
     console.error("Erro de autenticação", error);
