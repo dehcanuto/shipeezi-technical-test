@@ -4,12 +4,14 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 import { BaseButton } from "../../atoms";
 import FormField from "../../molecules/FormField";
-import { handleRegister } from "../../../services/auth";
+import { handleLogin, handleRegister } from "../../../services/auth";
 import { UserInfos } from "../../../models/user";
 import { useAlert } from "../../../context/AlertContext";
+import { LoginResponse, useAuth } from "../../../context/AuthContext";
 
 const SignUp = () => {
     const navigate = useNavigate();
+    const { login } = useAuth();
     const { showAlert } = useAlert();
     const { register, handleSubmit } = useForm<FieldValues>();
     const [loading, setLoading] = useState<boolean>(false);
@@ -17,9 +19,19 @@ const SignUp = () => {
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
         setLoading(true);
         await handleRegister(data as UserInfos)
-            .then(() => {
+            .then(async () => {
                 showAlert("User registered successfully", "success");
-                navigate("/signin");
+                await handleLogin({ email: data.email, password: data.password })
+                    .then((res: LoginResponse | null) => {
+                        if (res) {
+                            login(res);
+                            navigate("/dashboard");
+                        }
+                    })
+                    .catch(error => showAlert(error, "error"))
+                    .finally(() => {
+                        setLoading(false);
+                    });
             })
             .catch(error => showAlert(error, "error"))
             .finally(() => setLoading(false));
