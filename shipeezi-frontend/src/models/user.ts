@@ -7,4 +7,10 @@ export interface UserInfos extends LoginCredentials {
 
 export interface UsersListResponse extends UserInfos {
     id: number;
+    birthdate: string;
+    gender:  number;
+    email: string;
+    phone: string;
+    updatedAt: string;
+    createdAt: string;
 }

@@ -27,6 +27,8 @@ export class UsersService {
   }
 
   async register(createUserDto: CreateUserDto) {
+    // // dados de endereco: address e type.
+    createUserDto.password = await bcrypt.hash(createUserDto.password, 10);
     return this.userModel.create(createUserDto);
   }
 

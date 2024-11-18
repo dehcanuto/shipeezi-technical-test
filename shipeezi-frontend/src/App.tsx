@@ -26,8 +26,8 @@ function App() {
           <Route element={<ProtectedRoute redirectTo="/signin" />}>
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/users" element={<UsersListPage />} />
-            <Route path="/users/:id" element={<UserDetailsPage />} />
-            <Route path="/users/new" element={<NewUserPage />} />
+            <Route path="/user/:id" element={<UserDetailsPage />} />
+            <Route path="/user/new" element={<NewUserPage />} />
           </Route>
         </Routes>
       </Router>

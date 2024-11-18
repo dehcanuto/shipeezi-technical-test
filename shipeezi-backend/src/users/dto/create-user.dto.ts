@@ -1,13 +1,17 @@
-import { IsOptional, IsString, MinLength, IsEmail } from 'class-validator';
+import {
+  IsOptional,
+  IsString,
+  MinLength,
+  IsEmail,
+  IsNumber,
+} from 'class-validator';
 
 export class CreateUserDto {
-  @IsOptional()
   @IsString()
-  fullName?: string;
+  fullName: string;
 
-  @IsOptional()
   @IsString()
-  username?: string;
+  username: string;
 
   @IsEmail({}, { message: 'O email deve ser válido' })
   email: string;
@@ -15,4 +19,16 @@ export class CreateUserDto {
   @IsString()
   @MinLength(6, { message: 'A senha deve ter pelo menos 6 caracteres' })
   password: string;
+
+  @IsOptional()
+  @IsString()
+  birthdate?: string;
+
+  @IsOptional()
+  @IsNumber()
+  gender?: number;
+
+  @IsOptional()
+  @IsString()
+  phone?: string;
 }

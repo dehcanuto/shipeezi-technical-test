@@ -33,7 +33,7 @@ function UsersListPage() {
             User Management
           </h2>
           <Link
-            to="/users/new"
+            to="/user/new"
             className="flex items-center px-4 bg-green-500 text-white rounded-lg">
             New User
           </Link>
