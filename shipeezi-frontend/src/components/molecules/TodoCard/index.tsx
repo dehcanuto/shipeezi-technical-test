@@ -1,8 +1,8 @@
 import { BsChatLeftTextFill } from "react-icons/bs";
 
 import { TodoCardPropsType } from "./type";
-import { getInitials } from "../../../misc/format";
 import { RenderTags } from "../../../misc/renderTags";
+import { BaseAvatar } from "../../atoms";
 
 const TodoCard = ({ title, tags, assignedTo, commentsCount, handleShow }: TodoCardPropsType) => {
     return (
@@ -15,9 +15,7 @@ const TodoCard = ({ title, tags, assignedTo, commentsCount, handleShow }: TodoCa
                     </span>
                     <RenderTags tags={tags} />
                     <div className="flex justify-between items-center py-2">
-                        <span className="p-1 bg-green-500 text-white font-bold border-2 border-white rounded">
-                            {getInitials(assignedTo.fullName)}
-                        </span>
+                        <BaseAvatar name={assignedTo.fullName} size="base" />
                         <div className="flex items-center font-bold gap-2">
                             <BsChatLeftTextFill />
                             <span>{commentsCount}</span>
