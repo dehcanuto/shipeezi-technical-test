@@ -7,6 +7,7 @@ import { FormUserPropsType } from "./type";
 import { BaseButton, Loading } from "../../atoms";
 import { FormFieldSelect } from "../../molecules";
 import FormField from "../../molecules/FormField";
+import FormFieldMasked from "../../molecules/FormFieldMasked";
 
 import { genderTypes } from "../../../enums";
 import addressTypes from "../../../enums/address.type";
@@ -52,9 +53,10 @@ const FormUser = ({ userData, onSubmit, loading }: FormUserPropsType) => {
                             placeholder="Enter your password"
                             register={register} />
                     )}
-                    <FormField
+                    <FormFieldMasked
                         label="Birth date"
                         name="birthdate"
+                        mask="99/99/9999"
                         placeholder="dd/mm/yyyy"
                         register={register} />
                     <FormFieldSelect
@@ -62,9 +64,10 @@ const FormUser = ({ userData, onSubmit, loading }: FormUserPropsType) => {
                         name="gender"
                         options={genderTypes}
                         register={register} />
-                    <FormField
+                    <FormFieldMasked
                         label="Phone number"
                         name="phone"
+                        mask="999 999 9999"
                         placeholder="000 000 0000"
                         register={register} />
                 </div>

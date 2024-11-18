@@ -9,6 +9,7 @@ import { MyProfilePropType } from "./type";
 import { UserUpdate } from "../../../models/user";
 import addressTypes from "../../../enums/address.type";
 import { handleUpdateUser } from "../../../hooks/users";
+import FormFieldMasked from "../../molecules/FormFieldMasked";
 
 const MyProfile = ({ user, show, handleShow }: MyProfilePropType) => {
     const { register, handleSubmit, reset } = useForm<FieldValues|UserUpdate>();
@@ -90,9 +91,10 @@ const MyProfile = ({ user, show, handleShow }: MyProfilePropType) => {
                                     name="username"
                                     placeholder="@"
                                     register={register} />
-                                <FormField
+                                <FormFieldMasked
                                     label="Birth date"
                                     name="birthdate"
+                                    mask="99/99/9999"
                                     placeholder="dd/mm/yyyy"
                                     register={register} />
                                 <FormFieldSelect
@@ -105,9 +107,10 @@ const MyProfile = ({ user, show, handleShow }: MyProfilePropType) => {
                                     name="email"
                                     placeholder="Please enter the email"
                                     register={register} />
-                                <FormField
+                                <FormFieldMasked
                                     label="Phone number"
                                     name="phone"
+                                    mask="999 999 9999"
                                     placeholder="000 000 0000"
                                     register={register} />
 

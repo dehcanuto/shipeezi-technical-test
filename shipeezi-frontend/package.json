@@ -47,6 +47,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-input-mask": "^3.0.6",
     "tailwindcss": "^3.4.14"
   }
 }
