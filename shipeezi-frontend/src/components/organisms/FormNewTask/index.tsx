@@ -52,13 +52,11 @@ const FormNewTask = ({ status, show, handleShow, done }: FormNewTaskPropsType) =
                     setUsersToAssignee(mappedUsers);
                 }
             })
-            .catch(error => {
-                console.error('handleListUsers catch', error);
-            })
+            .catch(error => showAlert(error, "error"))
         };
     
         fetchData();
-    }, [reset, status]);
+    }, [reset, status, showAlert]);
     
     return (
         <Modal
