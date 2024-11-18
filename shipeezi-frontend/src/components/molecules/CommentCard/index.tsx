@@ -7,11 +7,13 @@ const CommentCard = ({ name, comment, date }: CommentCardPropTypes) => {
 
     return (
         <div className="flex items-center gap-3">
-            <BaseAvatar name={name} size="large" />
-            <div className="text-sm">
-                <div className="flex gap-2">
-                    <span className="font-semibold">{name}</span>
-                    <span className="text-slate-400">
+            <div>
+                <BaseAvatar name={name} size="large" />
+            </div>
+            <div className="w-full text-sm">
+                <div className="flex flex-row items-center justify-between gap-2">
+                    <span className="font-semibold truncate w-28">{name}</span>
+                    <span className="text-xs text-slate-400">
                         {formatDateComment(date)}
                     </span>
                 </div>

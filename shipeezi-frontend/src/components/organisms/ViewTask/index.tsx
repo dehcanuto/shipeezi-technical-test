@@ -34,7 +34,7 @@ const ViewTask = ({ show, handleShow }: ViewTaskPropTypes) => {
                     show={show.view}
                     handleShow={() => handleShow()}>
                     <div className="flex divide-x gap-3">
-                        <div className="flex flex-col min-w-96 justify-between divide-y p-2 gap-3">
+                        <div className="flex flex-col w-96 justify-between divide-y p-2 gap-3">
                             <div className="flex flex-col gap-2">
                                 <span className="block text-green-600 text-sm font-semibold">
                                     Description

@@ -63,7 +63,7 @@ const FormNewTask = ({ show, handleShow }: FormNewTaskPropsType) => {
             loading={loading}
             viewAction>
             <form onSubmit={handleSubmit(onSubmit)} className="flex divide-x gap-3">
-                <div className="flex flex-col min-w-96 p-2 gap-3">
+                <div className="flex flex-col w-96 p-2 gap-3">
                     <FormField
                         label="Task name"
                         name="title"

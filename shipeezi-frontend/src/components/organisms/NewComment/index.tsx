@@ -4,13 +4,16 @@ import { BaseAvatar } from "../../atoms";
 import { handleCreateComment } from "../../../hooks/comments";
 import { Comments } from "../../../models/comments";
 import { useAuth } from "../../../context/AuthContext";
+import { CgSpinner } from "react-icons/cg";
 
 const NewComment = ({ taskId, update }: { taskId: number; update: (data: Comments[]) => void }) => {
     const { user } = useAuth();
+    const [loading, setLoading] = useState<boolean>(false);
     const [message, setMessage] = useState<string>('');
     
     const handleKeyDown = async (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter" && message.trim()) {
+            setLoading(true);
             await handleCreateComment({
                 comment: message.trim(),
                 taskId: taskId
@@ -21,6 +24,7 @@ const NewComment = ({ taskId, update }: { taskId: number; update: (data: Comment
             })
             .catch(error => console.error('onSubmit catch', error))
             .finally(() => {
+                setLoading(false);
                 setMessage("");
             });
         }
@@ -33,14 +37,17 @@ const NewComment = ({ taskId, update }: { taskId: number; update: (data: Comment
                     <BaseAvatar name={user.fullName} size="large" />
                 </div>
             )}
-            <input
-                type="text"
-                placeholder="Add a comment"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                onKeyDown={handleKeyDown}
-                className="block w-full py-2 px-3 bg-green-500/10 focus:outline-none rounded-md disabled:bg-gray-100"
-            />
+            <div className="relative w-full">
+                <input
+                    type="text"
+                    placeholder="Write a comment and press enter"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    className="block w-full py-2 px-3 bg-green-500/10 focus:outline-none rounded-md disabled:bg-gray-100"
+                />
+                {loading && <CgSpinner className="absolute top-1 right-2 animate-spin text-3xl text-green-500" />}
+            </div>
         </div>
     )
 }
