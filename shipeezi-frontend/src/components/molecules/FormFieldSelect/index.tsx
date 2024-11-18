@@ -8,7 +8,7 @@ const FormFieldSelect = ({
         rules
     }: FormFieldSelectPropTypes) => {
     return (
-        <div>
+        <div className="min-w-40">
             <label className="block text-green-600 text-sm font-semibold mb-1" htmlFor={name}>
                 {label}
             </label>

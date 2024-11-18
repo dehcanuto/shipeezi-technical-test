@@ -1,20 +1,16 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { UserUpdate } from '../models/user';
 
 interface AuthContextType {
   isAuthenticated: boolean;
-  user: User | null;
+  user: UserUpdate | null;
   login: (data: LoginResponse) => void;
   logout: () => void;
 }
 
-interface User {
-  fullName: string;
-  username: string;
-}
-
 export interface LoginResponse {
   access_token: string;
-  user: User;
+  user: UserUpdate;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -24,7 +20,7 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<UserUpdate | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
   useEffect(() => {
@@ -46,6 +42,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, []);
 
   const login = (data: LoginResponse) => {
+    console.log('login data', data);
     localStorage.setItem('user_info', JSON.stringify(data.user));
     localStorage.setItem('access_token', data.access_token);
     setUser(data.user);

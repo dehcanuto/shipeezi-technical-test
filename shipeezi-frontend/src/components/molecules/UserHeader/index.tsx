@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
 import { getFirstName } from "../../../misc";
 import { BaseAvatar } from "../../atoms";
+import Modal from "../Modal";
+import MyProfile from "../../organisms/MyProfile";
 
 interface UserInfosHeader {
     firstName: string;
@@ -13,6 +15,7 @@ interface UserInfosHeader {
 const UserHeader = () => {
     const { user, logout } = useAuth();
     const [show, setShow] = useState<boolean>(false);
+    const [showProfile, setShowProfile] = useState<boolean>(false);
     const [userInfos, setUserInfos] = useState<UserInfosHeader>();
     const menuRef = useRef<HTMLDivElement | null>(null);
 
@@ -24,6 +27,7 @@ const UserHeader = () => {
 
     useEffect(() => {
         if (user) {
+            console.log('user', user);
             const firstName = getFirstName(user.fullName);
             setUserInfos({
                 firstName: firstName,
@@ -48,7 +52,7 @@ const UserHeader = () => {
                 <BaseAvatar name={user?.fullName ?? 'SN' } size="large" />
             </button>
             {show && (
-                <div ref={menuRef} className="absolute top-100 right-0 w-60 mt-2 bg-white rounded-lg shadow-lg">
+                <div ref={menuRef} className="absolute top-100 right-0 w-60 mt-2 bg-white rounded-lg shadow-lg z-30">
                     <div className="flex flex-col py-6 divide-y gap-2">
                         <div className="flex py-2 px-4 gap-2">
                             <BaseAvatar name={user?.fullName ?? 'SN' } size="large" />
@@ -59,7 +63,7 @@ const UserHeader = () => {
                         </div>
                         <ul className="pt-2">
                             <li className="py-2 px-4 hover:bg-green-8% cursor-pointer">
-                                <button type="button">
+                                <button type="button" onClick={() => setShowProfile(true)}>
                                     Profile
                                 </button>
                             </li>
@@ -71,6 +75,13 @@ const UserHeader = () => {
                         </ul>
                     </div>
                 </div>
+            )}
+            {user && (
+                <MyProfile
+                    user={user}
+                    show={showProfile}
+                    handleShow={() => setShowProfile(!setShowProfile)}
+                />
             )}
         </div>
     );

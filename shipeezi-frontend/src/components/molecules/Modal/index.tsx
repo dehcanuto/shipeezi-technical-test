@@ -5,6 +5,7 @@ interface ModalPropTypes {
     title: string;
     show: boolean;
     viewAction?: boolean;
+    submitLabel?: string;
     action?: () => void;
     handleShow: () => void;
     children: React.ReactNode;
@@ -17,6 +18,7 @@ const Modal = ({
     action,
     handleShow,
     children,
+    submitLabel = "Create",
     viewAction = false,
     loading = false
     }: ModalPropTypes) => {    
@@ -38,7 +40,7 @@ const Modal = ({
                         <div className="flex py-4 px-8 items-center justify-end border-t">
                             <div className="flex gap-3">
                                 <BaseButton label="Cancel" variant="text" click={handleShow} />
-                                <BaseButton label="Create" click={action} loading={loading} />
+                                <BaseButton label={submitLabel} click={action} loading={loading} />
                             </div>
                         </div>
                     )}
