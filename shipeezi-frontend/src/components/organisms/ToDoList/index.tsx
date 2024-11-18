@@ -9,7 +9,7 @@ import FormNewTask from "../FormNewTask";
 import ViewTask from "../ViewTask";
 import { Loading } from "../../atoms";
 
-const ToDoList = ({ title, tasks, updateTasks, loading }: ToDoListPropTypes) => {    
+const ToDoList = ({ title, status, tasks, updateTasks, loading }: ToDoListPropTypes) => {    
     const [showForm, setShowForm] = useState<boolean>(false);
     const [showTask, setShowTask] = useState<{
         view: boolean;
@@ -57,6 +57,7 @@ const ToDoList = ({ title, tasks, updateTasks, loading }: ToDoListPropTypes) => 
                 </div>
             </div>
             <FormNewTask
+                status={status}
                 show={showForm}
                 handleShow={() => setShowForm(!showForm)}
                 done={updateTasks}

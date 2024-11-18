@@ -50,21 +50,25 @@ function DashboardPage() {
         <div className="flex">
           <ToDoList
             title="Backlog Tasks"
+            status={0}
             tasks={backlogTasks}
             updateTasks={() => setUpdateTasks(!updateTasks)}
             loading={loading} />
           <ToDoList
             title="To Do Tasks"
+            status={1}
             tasks={todoTasks}
             updateTasks={() => setUpdateTasks(!updateTasks)}
             loading={loading} />
           <ToDoList
             title="In Process"
+            status={2}
             tasks={processTasks}
             updateTasks={() => setUpdateTasks(!updateTasks)}
             loading={loading} />
           <ToDoList
             title="Done"
+            status={3}
             tasks={doneTasks}
             updateTasks={() => setUpdateTasks(!updateTasks)}
             loading={loading} />

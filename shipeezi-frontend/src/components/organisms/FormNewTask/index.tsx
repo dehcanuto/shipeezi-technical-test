@@ -14,7 +14,7 @@ import { FormFieldSelectOptionsPropTypes } from "../../molecules/FormFieldSelect
 import { FormNewTaskPropsType } from "./type";
 import { useAlert } from "../../../context/AlertContext";
 
-const FormNewTask = ({ show, handleShow, done }: FormNewTaskPropsType) => {
+const FormNewTask = ({ status, show, handleShow, done }: FormNewTaskPropsType) => {
     const { showAlert } = useAlert();
     const { register, handleSubmit, reset } = useForm<FieldValues>();
     const [loading, setLoading] = useState<boolean>(false);
@@ -40,6 +40,7 @@ const FormNewTask = ({ show, handleShow, done }: FormNewTaskPropsType) => {
     }
 
     useEffect(() => {
+        reset({ status: status });
         const fetchData = async () => {
           await handleListUsers()
             .then((res) => {
@@ -57,7 +58,7 @@ const FormNewTask = ({ show, handleShow, done }: FormNewTaskPropsType) => {
         };
     
         fetchData();
-    }, []);
+    }, [reset, status]);
     
     return (
         <Modal
