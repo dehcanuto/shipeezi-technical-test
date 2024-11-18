@@ -7,9 +7,11 @@ import GerencialLayout from "../../../components/organisms/GerencialLayout";
 import Breadcrumbs from "../../../components/molecules/Breadcrumbs";
 import FormUser from "../../../components/organisms/FormUser";
 import { UserUpdate } from "../../../models/user";
+import { useAlert } from "../../../context/AlertContext";
 
 function UserDetailsPage() {
   const { id } = useParams();
+  const { showAlert } = useAlert();
   const [loading, setLoading] = useState<boolean>(false);
   const [user, setUser] = useState<any>();
 
@@ -17,9 +19,7 @@ function UserDetailsPage() {
     if (id) {
       setLoading(true);
       await handleUpdateUser(id, data)
-        .then((res) => {
-          console.log('onSubmit', res);
-        })
+        .then(() => showAlert("User edited successfully!", "success"))
         .catch(error => {
           console.error('onSubmit catch', error);
         })
