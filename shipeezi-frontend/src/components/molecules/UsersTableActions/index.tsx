@@ -6,8 +6,9 @@ import Modal from "../Modal";
 import { BaseButton } from "../../atoms";
 import { handleDeleteUser } from "../../../hooks/users";
 import { useAlert } from "../../../context/AlertContext";
+import { UsersTableActionsPropsType } from "./type";
 
-const UsersTableActions = ({ id }: { id: string }) => {
+const UsersTableActions = ({ id, done }: UsersTableActionsPropsType) => {
     const { showAlert } = useAlert();
     const menuRef = useRef<HTMLDivElement | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
@@ -32,6 +33,7 @@ const UsersTableActions = ({ id }: { id: string }) => {
             .catch(error => showAlert(error, "error"))
             .finally(() => {
                 setLoading(false);
+                done();
                 setShowConfirmDialog(false);
             });
     }

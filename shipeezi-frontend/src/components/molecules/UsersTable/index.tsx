@@ -2,7 +2,7 @@ import { formatDate } from "../../../misc";
 import UsersTableActions from "../UsersTableActions";
 import { TablePropTypes } from "./type";
 
-const Table = ({ header, items, loading }: TablePropTypes) => {
+const Table = ({ header, items, loading, updateUsers }: TablePropTypes) => {
     return (
         <table className="bg-white table-auto w-full">
             <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
@@ -53,7 +53,7 @@ const Table = ({ header, items, loading }: TablePropTypes) => {
                             </div>
                         </td>
                         <td className="flex p-2 px-4 justify-end">
-                            <UsersTableActions id={item.id} />
+                            <UsersTableActions id={item.id} done={updateUsers} />
                         </td>
                     </tr>
                 ))}

@@ -10,6 +10,7 @@ import { useAlert } from "../../../context/AlertContext";
 function UsersListPage() {
   const { showAlert } = useAlert();
   const [loading, setLoading] = useState<boolean>(true);
+  const [updateUsers, setUpdateUsers] = useState<boolean>(true);
   const [users, setUsers] = useState<UsersListResponse[]>([]);
 
   useEffect(() => {
@@ -23,7 +24,8 @@ function UsersListPage() {
     };
 
     fetchData();
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [updateUsers]);
 
   return (
     <GerencialLayout>
@@ -43,6 +45,7 @@ function UsersListPage() {
             header={['User', 'Last update', 'added']}
             items={users}
             loading={loading}
+            updateUsers={() => setUpdateUsers(!updateUsers)}
           />
         </div>
       </main>
