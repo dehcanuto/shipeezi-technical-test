@@ -14,7 +14,7 @@ export const handleListUsers = async () => {
   }
 };
 
-export const handleGetUsers = async (id: string) => {
+export const handleGetUser = async (id: string) => {
   try {
     const response: AxiosResponse<UsersListResponse> = await api.get<UsersListResponse>(`/users/${id}`);
     return response.data;
@@ -27,6 +27,16 @@ export const handleGetUsers = async (id: string) => {
 export const handleCreateUser = async (data: FieldValues) => {
   try {
     const response: AxiosResponse<UsersListResponse> = await api.post<UsersListResponse>('/users', data);
+    return response.data;
+  } catch (error) {
+    console.error("Erro de autenticação", error);
+    return null;
+  }
+};
+
+export const handleUpdateUser = async (id: string, data: FieldValues) => {
+  try {
+    const response: AxiosResponse<UsersListResponse> = await api.patch<UsersListResponse>(`/users/${id}`, data);
     return response.data;
   } catch (error) {
     console.error("Erro de autenticação", error);

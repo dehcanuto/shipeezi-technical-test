@@ -1,11 +1,27 @@
-import { IsOptional, IsString, MinLength } from 'class-validator';
+import { IsOptional, IsString } from 'class-validator';
 
 export class UpdateUserDto {
   @IsOptional()
   @IsString()
   fullName?: string;
 
+  @IsOptional()
   @IsString()
-  @MinLength(6, { message: 'A senha deve ter pelo menos 6 caracteres' })
-  password: string;
+  email?: string;
+
+  @IsOptional()
+  @IsString()
+  username?: string;
+
+  @IsOptional()
+  @IsString()
+  birthdate?: string;
+
+  @IsOptional()
+  @IsString()
+  phone?: string;
+
+  @IsOptional()
+  @IsString()
+  gender?: number;
 }
