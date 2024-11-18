@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { useAuth } from "../../../context/AuthContext";
 import { getFirstName } from "../../../misc";
@@ -14,6 +14,13 @@ const UserHeader = () => {
     const { user, logout } = useAuth();
     const [show, setShow] = useState<boolean>(false);
     const [userInfos, setUserInfos] = useState<UserInfosHeader>();
+    const menuRef = useRef<HTMLDivElement | null>(null);
+
+    const handleClickOutside = (event: MouseEvent) => {
+        if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+            setShow(false);
+        }
+    };
 
     useEffect(() => {
         if (user) {
@@ -25,7 +32,14 @@ const UserHeader = () => {
             })
         }
     }, [user]);
-    
+
+    useEffect(() => {
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
     return (
         <div className="relative">
             <button
@@ -34,7 +48,7 @@ const UserHeader = () => {
                 <BaseAvatar name={user?.fullName ?? 'SN' } size="large" />
             </button>
             {show && (
-                <div className="absolute top-100 right-0 w-60 mt-2 bg-white rounded-lg shadow-lg">
+                <div ref={menuRef} className="absolute top-100 right-0 w-60 mt-2 bg-white rounded-lg shadow-lg">
                     <div className="flex flex-col py-6 divide-y gap-2">
                         <div className="flex py-2 px-4 gap-2">
                             <BaseAvatar name={user?.fullName ?? 'SN' } size="large" />
@@ -44,7 +58,11 @@ const UserHeader = () => {
                             </div>
                         </div>
                         <ul className="pt-2">
-                            <li className="py-2 px-4 hover:bg-green-8% cursor-pointer">Profile</li>
+                            <li className="py-2 px-4 hover:bg-green-8% cursor-pointer">
+                                <button type="button">
+                                    Profile
+                                </button>
+                            </li>
                             <li className="py-2 px-4 text-red-500 hover:bg-green-8% cursor-pointer">
                                 <button type="button" onClick={logout}>
                                     Logout

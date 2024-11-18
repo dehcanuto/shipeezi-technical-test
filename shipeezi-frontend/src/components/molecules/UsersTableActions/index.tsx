@@ -14,7 +14,7 @@ const UsersTableActions = ({ id }: { id: string }) => {
                 <BsThreeDots />
             </button>
             {show && (
-                <div className="absolute top-full right-0 w-60 mt-2 bg-white rounded-lg shadow-lg">
+                <div className="absolute top-full right-0 w-60 mt-2 bg-white rounded-lg shadow-lg z-30">
                     <ul className="py-2">
                         <li className="py-2 px-4 hover:bg-green-8% cursor-pointer">
                             <Link to={`/user/${id}`} className="flex">
