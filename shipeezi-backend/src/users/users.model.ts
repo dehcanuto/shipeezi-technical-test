@@ -32,13 +32,15 @@ export class Users extends Model<Users> {
 
   @Column({
     type: DataType.STRING,
-    allowNull: true,
+    allowNull: false,
+    defaultValue: '',
   })
   birthdate?: string;
 
   @Column({
     type: DataType.STRING,
-    allowNull: true,
+    allowNull: false,
+    defaultValue: '',
   })
   phone?: string;
 

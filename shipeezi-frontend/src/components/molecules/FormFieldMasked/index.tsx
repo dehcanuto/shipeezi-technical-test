@@ -17,11 +17,11 @@ const FormFieldMasked = ({
             <InputMask
                 mask={mask}
                 className="block w-full py-2 px-3 mt-1 bg-green-500/10 focus:outline-none rounded-md disabled:bg-gray-100"
-            {...(register && register(name, rules))}
+                {...(register && register(name, rules))}
             >
             {(inputProps: any) => (
                 <input
-                {...inputProps}
+                    {...inputProps}
                     id={name}
                     placeholder={placeholder}
                     className="block w-full py-2 px-3 mt-1 bg-green-500/10 focus:outline-none rounded-md disabled:bg-gray-100"
