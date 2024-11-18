@@ -4,7 +4,8 @@ import { FieldValues, SubmitHandler } from "react-hook-form";
 
 import { handleGetUser, handleUpdateUser } from "../../../hooks/users";
 import GerencialLayout from "../../../components/organisms/GerencialLayout";
-import { Breadcrumbs, FormUser } from "../../../components";
+import Breadcrumbs from "../../../components/molecules/Breadcrumbs";
+import FormUser from "../../../components/organisms/FormUser";
 import { UserUpdate } from "../../../models/user";
 
 function UserDetailsPage() {

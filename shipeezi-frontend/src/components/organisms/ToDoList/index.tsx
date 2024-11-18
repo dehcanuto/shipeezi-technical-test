@@ -4,7 +4,7 @@ import { BsFillPlusCircleFill, BsThreeDots } from "react-icons/bs";
 import { ToDoListPropTypes } from "./type";
 import { TodoCardPropsType } from "../../molecules/TodoCard/type";
 
-import { TodoCard } from "../../molecules";
+import TodoCard from "../../molecules/TodoCard";
 import FormNewTask from "../FormNewTask";
 import ViewTask from "../ViewTask";
 

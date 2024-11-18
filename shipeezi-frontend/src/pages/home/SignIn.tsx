@@ -1,4 +1,4 @@
-import { SignIn } from "../../components";
+import SignIn from "../../components/organisms/SignIn";
 
 function SignInPage() {
   return (

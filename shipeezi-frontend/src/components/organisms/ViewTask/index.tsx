@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 
 import { ViewTaskPropTypes } from "./type";
 import { RenderTags, formatDate, getStatusName } from "../../../misc";
-import { CommentCard } from "../..";
 import Modal from "../../molecules/Modal";
+import CommentCard from "../../molecules/CommentCard";
 import NewComment from "../NewComment";
 import { handleListComments } from "../../../hooks/comments";
 import { Comments } from "../../../models/comments";

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { UsersTable } from "../../../components";
 import GerencialLayout from "../../../components/organisms/GerencialLayout";
+import UsersTable from "../../../components/molecules/UsersTable";
 import { handleListUsers } from "../../../hooks/users";
 import { UsersListResponse } from "../../../models/user";
 

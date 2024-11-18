@@ -22,7 +22,7 @@ const Modal = ({
     }: ModalPropTypes) => {    
     return <>
         {show && (
-            <div className="flex fixed inset-0 items-center justify-center bg-slate-900/30">
+            <div className="flex fixed inset-0 items-center justify-center bg-slate-900/30 z-50">
                 <span onClick={handleShow} className="absolute inset-0" />
                 <div className="relative min-w-96 bg-white rounded-lg">
                     <div className="flex p-3 mx-3 items-center justify-between text-2xl border-b">

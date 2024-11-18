@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-import { Breadcrumbs, FormUser } from "../../../components";
-import GerencialLayout from "../../../components/organisms/GerencialLayout";
 import { FieldValues, SubmitHandler } from "react-hook-form";
+
+import GerencialLayout from "../../../components/organisms/GerencialLayout";
+import Breadcrumbs from "../../../components/molecules/Breadcrumbs";
+import FormUser from "../../../components/organisms/FormUser";
 import { handleCreateUser } from "../../../hooks/users";
 
 const NewUserBreadcumb = [
