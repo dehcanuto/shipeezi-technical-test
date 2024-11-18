@@ -5,9 +5,11 @@ import { handleCreateComment } from "../../../hooks/comments";
 import { Comments } from "../../../models/comments";
 import { useAuth } from "../../../context/AuthContext";
 import { CgSpinner } from "react-icons/cg";
+import { useAlert } from "../../../context/AlertContext";
 
 const NewComment = ({ taskId, update }: { taskId: number; update: (data: Comments[]) => void }) => {
     const { user } = useAuth();
+    const { showAlert } = useAlert();
     const [loading, setLoading] = useState<boolean>(false);
     const [message, setMessage] = useState<string>('');
     
@@ -19,7 +21,7 @@ const NewComment = ({ taskId, update }: { taskId: number; update: (data: Comment
                 taskId: taskId
             })
             .then((res) => { 
-                console.log('handleCreateComment', res);
+                showAlert("Comment created successfully!", "success");
                 if (res) update(res)
             })
             .catch(error => console.error('onSubmit catch', error))

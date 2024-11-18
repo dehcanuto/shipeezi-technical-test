@@ -12,8 +12,10 @@ import { FormFieldSelect, FormFieldTagSelect } from "../../molecules";
 import FormField from "../../molecules/FormField";
 import { FormFieldSelectOptionsPropTypes } from "../../molecules/FormFieldSelect/type";
 import { FormNewTaskPropsType } from "./type";
+import { useAlert } from "../../../context/AlertContext";
 
 const FormNewTask = ({ show, handleShow }: FormNewTaskPropsType) => {
+    const { showAlert } = useAlert();
     const { register, handleSubmit, reset } = useForm<FieldValues>();
     const [loading, setLoading] = useState<boolean>(false);
     const [selectedTags, setSelectedTags] = useState<TagsTasksPropTypes[]>([]);
@@ -25,7 +27,8 @@ const FormNewTask = ({ show, handleShow }: FormNewTaskPropsType) => {
         data.tags = selectedTags.map(tag => tag.value);
 
         await handleCreateTask(data)
-            .then((res: any | null) => {
+            .then(() => {
+                showAlert("Task created successfully!", "success");
                 reset();
                 handleShow();
             })

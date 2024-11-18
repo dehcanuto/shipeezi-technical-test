@@ -6,6 +6,7 @@ import GerencialLayout from "../../../components/organisms/GerencialLayout";
 import Breadcrumbs from "../../../components/molecules/Breadcrumbs";
 import FormUser from "../../../components/organisms/FormUser";
 import { handleCreateUser } from "../../../hooks/users";
+import { useAlert } from "../../../context/AlertContext";
 
 const NewUserBreadcumb = [
   {
@@ -20,12 +21,14 @@ const NewUserBreadcumb = [
 
 function NewUserPage() {
   const navigate = useNavigate();
+  const { showAlert } = useAlert();
   const [loading, setLoading] = useState<boolean>(false);
     
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setLoading(true);
     await handleCreateUser(data)
       .then((res) => {
+        showAlert("User created successfully!", "success")
         if (res) navigate(`/user/${res.id}`);
       })
       .catch(error => {

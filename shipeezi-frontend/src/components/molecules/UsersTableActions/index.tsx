@@ -1,11 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { Link } from "react-router-dom";
+
 import Modal from "../Modal";
 import { BaseButton } from "../../atoms";
 import { handleDeleteUser } from "../../../hooks/users";
+import { useAlert } from "../../../context/AlertContext";
 
 const UsersTableActions = ({ id }: { id: string }) => {
+    const { showAlert } = useAlert();
     const menuRef = useRef<HTMLDivElement | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [show, setShow] = useState<boolean>(false);
@@ -25,9 +28,7 @@ const UsersTableActions = ({ id }: { id: string }) => {
     const deleteUser = async () => {
         setLoading(true);
         await handleDeleteUser(id)
-            .then((res) => {
-                console.log('handleDeleteUser then', res)
-            })
+            .then(() => showAlert("User deleted successfully!", "success"))
             .catch(error => console.error('handleDeleteUser catch', error))
             .finally(() => {
                 setLoading(false);
