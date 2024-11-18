@@ -4,7 +4,7 @@ import { FieldValues, SubmitHandler } from "react-hook-form";
 
 import { handleGetUser, handleUpdateUser } from "../../../hooks/users";
 import GerencialLayout from "../../../components/organisms/GerencialLayout";
-import { FormUser } from "../../../components";
+import { Breadcrumbs, FormUser } from "../../../components";
 import { UserUpdate } from "../../../models/user";
 
 function UserDetailsPage() {
@@ -43,6 +43,18 @@ function UserDetailsPage() {
   
   return (
     <GerencialLayout>
+      <div className="border-b">
+        <Breadcrumbs items={[
+          {
+            label: 'Users',
+            link: '/users',
+          },
+          {
+            label: user ? user.fullName : '...',
+            link: '#',
+          }
+        ]} />
+      </div>
       <FormUser
         userData={user}
         onSubmit={onSubmit}

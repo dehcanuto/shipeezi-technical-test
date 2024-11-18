@@ -26,8 +26,6 @@ function NewUserPage() {
     
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setLoading(true);
-    console.log('NewUserPage onSubmit', data);
-
     await handleCreateUser(data)
       .then((res) => {
         if (res) navigate(`/user/${res.id}`);

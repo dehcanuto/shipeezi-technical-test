@@ -5,7 +5,7 @@ import { BreadcrumbsPropTypes } from "./type";
 const Breadcrumbs = ({ items }: BreadcrumbsPropTypes) => {
     return (
         <nav aria-label="breadcrumb">
-            <ol className="flex w-full flex-wrap items-center py-2 px-4 text-2xl text-slate-700">
+            <ol className="flex w-full flex-wrap items-center p-2 text-2xl text-slate-700">
                 {items.map((item, index) => (
                     <li className="flex cursor-pointer items-center leading-normal">
                         <Link to={item.link}>
