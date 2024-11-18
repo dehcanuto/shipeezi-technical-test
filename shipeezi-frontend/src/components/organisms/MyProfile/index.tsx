@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
-import { FormField, FormFieldSelect } from "../..";
+import { FormFieldSelect } from "../..";
 import { genderTypes } from "../../../enums";
 import Modal from "../../molecules/Modal";
+import FormField from "../../molecules/FormField";
 import { MyProfilePropType } from "./type";
 import { UserUpdate } from "../../../models/user";
 import addressTypes from "../../../enums/address.type";

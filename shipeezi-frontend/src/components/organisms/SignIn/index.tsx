@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 import { BaseButton } from "../../../components/atoms";
-import { FormField } from "../../../components/molecules";
+import FormField from "../../../components/molecules/FormField";
 import { handleLogin } from "../../../services/auth";
 import { LoginCredentials } from "../../../models/auth";
 import { LoginResponse, useAuth } from "../../../context/AuthContext";

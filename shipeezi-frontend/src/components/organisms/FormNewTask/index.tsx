@@ -8,7 +8,8 @@ import { statusTasks, tagsTasks } from "../../../enums";
 import { TagsTasksPropTypes } from "../../../enums/tags.tasks";
 
 import Modal from "../../molecules/Modal";
-import { FormField, FormFieldSelect, FormFieldTagSelect } from "../../molecules";
+import { FormFieldSelect, FormFieldTagSelect } from "../../molecules";
+import FormField from "../../molecules/FormField";
 import { FormFieldSelectOptionsPropTypes } from "../../molecules/FormFieldSelect/type";
 import { FormNewTaskPropsType } from "./type";
 

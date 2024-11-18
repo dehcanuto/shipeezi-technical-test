@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { FormUserPropsType } from "./type";
 
 import { BaseButton, Loading } from "../../atoms";
-import { FormField, FormFieldSelect } from "../../molecules";
+import { FormFieldSelect } from "../../molecules";
+import FormField from "../../molecules/FormField";
 
 import { genderTypes } from "../../../enums";
 import addressTypes from "../../../enums/address.type";

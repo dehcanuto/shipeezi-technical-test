@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 import { BaseButton } from "../../atoms";
-import { FormField } from "../../molecules";
+import FormField from "../../molecules/FormField";
 import { handleRegister } from "../../../services/auth";
 import { UserInfos } from "../../../models/user";
 

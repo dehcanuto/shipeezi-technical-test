@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
 import { getFirstName } from "../../../misc";
 import { BaseAvatar } from "../../atoms";
-import Modal from "../Modal";
 import MyProfile from "../../organisms/MyProfile";
 
 interface UserInfosHeader {
