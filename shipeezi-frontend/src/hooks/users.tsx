@@ -43,3 +43,13 @@ export const handleUpdateUser = async (id: string, data: FieldValues) => {
     return null;
   }
 };
+
+export const handleDeleteUser = async (id: string) => {
+  try {
+    const response: AxiosResponse<UsersListResponse> = await api.delete<UsersListResponse>(`/users/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Erro de autenticação", error);
+    return null;
+  }
+};
