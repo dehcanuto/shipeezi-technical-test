@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
@@ -9,16 +10,16 @@ import { UserInfos } from "../../../models/user";
 const SignUp = () => {
     const navigate = useNavigate();
     const { register, handleSubmit } = useForm<FieldValues>();
+    const [loading, setLoading] = useState<boolean>(false);
     
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+        setLoading(true);
         await handleRegister(data as UserInfos)
             .then(() => navigate("/signin"))
             .catch(error => {
                 console.error('onSubmit catch', error);
             })
-            .finally(() => {
-
-            });
+            .finally(() => setLoading(false));
     };
 
     return (
@@ -45,7 +46,7 @@ const SignUp = () => {
                 label="Password"
                 placeholder="Enter your password"
                 register={register} />
-            <BaseButton type="submit" label="Sign in" />
+            <BaseButton type="submit" label="Sign in" loading={loading} />
             <div className="flex items-center mx-auto">
                 <input id="remember_me" type="checkbox" className="border border-gray-300 text-red-600 shadow-sm focus:border-red-300 focus:ring focus:ring-red-200 focus:ring-opacity-50" />
                 <label htmlFor="remember_me" className="ml-2 block text-sm leading-5 text-gray-900"> I agree to the terms and conditions</label>
