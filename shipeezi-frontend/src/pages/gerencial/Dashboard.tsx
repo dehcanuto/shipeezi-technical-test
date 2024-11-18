@@ -51,19 +51,23 @@ function DashboardPage() {
           <ToDoList
             title="Backlog Tasks"
             tasks={backlogTasks}
-            updateTasks={() => setUpdateTasks(!updateTasks)} />
+            updateTasks={() => setUpdateTasks(!updateTasks)}
+            loading={loading} />
           <ToDoList
             title="To Do Tasks"
             tasks={todoTasks}
-            updateTasks={() => setUpdateTasks(!updateTasks)} />
+            updateTasks={() => setUpdateTasks(!updateTasks)}
+            loading={loading} />
           <ToDoList
             title="In Process"
             tasks={processTasks}
-            updateTasks={() => setUpdateTasks(!updateTasks)} />
+            updateTasks={() => setUpdateTasks(!updateTasks)}
+            loading={loading} />
           <ToDoList
             title="Done"
             tasks={doneTasks}
-            updateTasks={() => setUpdateTasks(!updateTasks)} />
+            updateTasks={() => setUpdateTasks(!updateTasks)}
+            loading={loading} />
         </div>
       </main>
     </GerencialLayout>

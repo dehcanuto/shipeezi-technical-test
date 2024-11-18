@@ -4,4 +4,5 @@ export interface ToDoListPropTypes {
     title: string;
     tasks: TodoCardPropsType[];
     updateTasks: () => void;
+    loading: boolean;
 }

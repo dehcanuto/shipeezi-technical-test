@@ -7,8 +7,9 @@ import { TodoCardPropsType } from "../../molecules/TodoCard/type";
 import TodoCard from "../../molecules/TodoCard";
 import FormNewTask from "../FormNewTask";
 import ViewTask from "../ViewTask";
+import { Loading } from "../../atoms";
 
-const ToDoList = ({ title, tasks, updateTasks }: ToDoListPropTypes) => {    
+const ToDoList = ({ title, tasks, updateTasks, loading }: ToDoListPropTypes) => {    
     const [showForm, setShowForm] = useState<boolean>(false);
     const [showTask, setShowTask] = useState<{
         view: boolean;
@@ -29,7 +30,12 @@ const ToDoList = ({ title, tasks, updateTasks }: ToDoListPropTypes) => {
                         <BsThreeDots />
                     </button>
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="relative flex flex-col gap-2">
+                    {loading && (
+                        <div className="p-3 h-32 bg-white rounded border-b border-grey">
+                            <Loading />
+                        </div>
+                    )}
                     {tasks.map((task: TodoCardPropsType, key: Key) => 
                         <TodoCard
                             key={key}
