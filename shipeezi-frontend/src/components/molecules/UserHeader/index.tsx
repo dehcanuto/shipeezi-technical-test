@@ -11,7 +11,7 @@ interface UserInfosHeader {
 }
 
 const UserHeader = () => {
-    const { user } = useAuth();
+    const { user, logout } = useAuth();
     const [show, setShow] = useState<boolean>(false);
     const [userInfos, setUserInfos] = useState<UserInfosHeader>();
 
@@ -45,7 +45,11 @@ const UserHeader = () => {
                         </div>
                         <ul className="pt-2">
                             <li className="py-2 px-4 hover:bg-green-8% cursor-pointer">Profile</li>
-                            <li className="py-2 px-4 text-red-500 hover:bg-green-8% cursor-pointer">Logout</li>
+                            <li className="py-2 px-4 text-red-500 hover:bg-green-8% cursor-pointer">
+                                <button type="button" onClick={logout}>
+                                    Logout
+                                </button>
+                            </li>
                         </ul>
                     </div>
                 </div>
