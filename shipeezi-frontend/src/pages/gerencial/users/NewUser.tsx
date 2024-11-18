@@ -31,9 +31,7 @@ function NewUserPage() {
         showAlert("User created successfully!", "success")
         if (res) navigate(`/user/${res.id}`);
       })
-      .catch(error => {
-          console.error('onSubmit catch', error);
-      })
+      .catch(error => showAlert(error, "error"))
       .finally(() => setLoading(false));
   };
 

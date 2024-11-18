@@ -6,8 +6,10 @@ import GerencialLayout from "../../components/organisms/GerencialLayout";
 
 import { TodoCardPropsType } from "../../components/molecules/TodoCard/type";
 import ToDoList from "../../components/organisms/ToDoList";
+import { useAlert } from "../../context/AlertContext";
 
 function DashboardPage() {
+  const { showAlert } = useAlert();
   const [loading, setLoading] = useState<boolean>(true);
 
   const [backlogTasks, setBacklogTasks] = useState<TodoCardPropsType[]>([]);
@@ -26,9 +28,7 @@ function DashboardPage() {
             setDoneTasks(tasks.filter(task => task.status === 3));
           }
         })
-        .catch(error => {
-            console.error('handleListTasks catch', error);
-        })
+        .catch(error => showAlert(error, "error"))
         .finally(() => {
           setLoading(false);
         });

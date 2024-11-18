@@ -30,9 +30,7 @@ const MyProfile = ({ user, show, handleShow }: MyProfilePropType) => {
         setLoading(true);
         await handleUpdateUser(data.id, data)
             .then(() => showAlert("Profile update successfully!", "success"))
-            .catch(error => {
-                console.error('onSubmit catch', error);
-            })
+            .catch(error => showAlert(error, "error"))
             .finally(() => setLoading(false));
     };
 

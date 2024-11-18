@@ -20,9 +20,7 @@ function UserDetailsPage() {
       setLoading(true);
       await handleUpdateUser(id, data)
         .then(() => showAlert("User edited successfully!", "success"))
-        .catch(error => {
-          console.error('onSubmit catch', error);
-        })
+        .catch(error => showAlert(error, "error"))
         .finally(() => setLoading(false));
     }
   };
@@ -32,9 +30,7 @@ function UserDetailsPage() {
       setLoading(true);
       await handleGetUser(idUser)
         .then((res) => setUser(res))
-        .catch(error => {
-            console.error('handleListUsers catch', error);
-        })
+        .catch(error => showAlert(error, "error"))
         .finally(() => {
           setLoading(false);
         });

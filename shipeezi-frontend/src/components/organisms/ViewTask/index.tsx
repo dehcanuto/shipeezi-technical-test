@@ -7,16 +7,16 @@ import CommentCard from "../../molecules/CommentCard";
 import NewComment from "../NewComment";
 import { handleListComments } from "../../../hooks/comments";
 import { Comments } from "../../../models/comments";
+import { useAlert } from "../../../context/AlertContext";
 
 const ViewTask = ({ show, handleShow }: ViewTaskPropTypes) => {
+    const { showAlert } = useAlert();
     const [comments, setComments] = useState<Comments[]>([]);
 
     const fetchCommentsList = async (taskId: number) => {
         await handleListComments(taskId)
             .then((res) => setComments(res || []))
-            .catch(error => {
-                console.error('handleListComments catch', error);
-            })
+            .catch(error => showAlert(error, "error"))
     };
 
     useEffect(() => {

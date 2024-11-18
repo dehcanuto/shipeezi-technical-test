@@ -6,9 +6,11 @@ import { BaseButton } from "../../atoms";
 import FormField from "../../molecules/FormField";
 import { handleRegister } from "../../../services/auth";
 import { UserInfos } from "../../../models/user";
+import { useAlert } from "../../../context/AlertContext";
 
 const SignUp = () => {
     const navigate = useNavigate();
+    const { showAlert } = useAlert();
     const { register, handleSubmit } = useForm<FieldValues>();
     const [loading, setLoading] = useState<boolean>(false);
     
@@ -16,9 +18,7 @@ const SignUp = () => {
         setLoading(true);
         await handleRegister(data as UserInfos)
             .then(() => navigate("/signin"))
-            .catch(error => {
-                console.error('onSubmit catch', error);
-            })
+            .catch(error => showAlert(error, "error"))
             .finally(() => setLoading(false));
     };
 

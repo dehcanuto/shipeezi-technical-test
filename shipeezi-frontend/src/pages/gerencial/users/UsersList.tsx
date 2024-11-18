@@ -5,8 +5,10 @@ import GerencialLayout from "../../../components/organisms/GerencialLayout";
 import UsersTable from "../../../components/molecules/UsersTable";
 import { handleListUsers } from "../../../hooks/users";
 import { UsersListResponse } from "../../../models/user";
+import { useAlert } from "../../../context/AlertContext";
 
 function UsersListPage() {
+  const { showAlert } = useAlert();
   const [loading, setLoading] = useState<boolean>(true);
   const [users, setUsers] = useState<UsersListResponse[]>([]);
 
@@ -14,9 +16,7 @@ function UsersListPage() {
     const fetchData = async () => {
       await handleListUsers()
         .then((res) => setUsers(res || []))
-        .catch(error => {
-            console.error('handleListUsers catch', error);
-        })
+        .catch(error => showAlert(error, "error"))
         .finally(() => {
           setLoading(false);
         });

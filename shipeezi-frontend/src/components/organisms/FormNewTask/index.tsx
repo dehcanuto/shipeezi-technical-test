@@ -32,7 +32,7 @@ const FormNewTask = ({ show, handleShow }: FormNewTaskPropsType) => {
                 reset();
                 handleShow();
             })
-            .catch(error => console.error('onSubmit catch', error))
+            .catch(error => showAlert(error, "error"))
             .finally(() => {
                 setLoading(false);
             });

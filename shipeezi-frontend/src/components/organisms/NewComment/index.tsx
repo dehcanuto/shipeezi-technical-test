@@ -24,7 +24,7 @@ const NewComment = ({ taskId, update }: { taskId: number; update: (data: Comment
                 showAlert("Comment created successfully!", "success");
                 if (res) update(res)
             })
-            .catch(error => console.error('onSubmit catch', error))
+            .catch(error => showAlert(error, "error"))
             .finally(() => {
                 setLoading(false);
                 setMessage("");

@@ -29,7 +29,7 @@ const UsersTableActions = ({ id }: { id: string }) => {
         setLoading(true);
         await handleDeleteUser(id)
             .then(() => showAlert("User deleted successfully!", "success"))
-            .catch(error => console.error('handleDeleteUser catch', error))
+            .catch(error => showAlert(error, "error"))
             .finally(() => {
                 setLoading(false);
                 setShowConfirmDialog(false);
