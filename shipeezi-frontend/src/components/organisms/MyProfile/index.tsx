@@ -10,8 +10,10 @@ import { UserUpdate } from "../../../models/user";
 import addressTypes from "../../../enums/address.type";
 import { handleUpdateUser } from "../../../hooks/users";
 import FormFieldMasked from "../../molecules/FormFieldMasked";
+import { useAlert } from "../../../context/AlertContext";
 
 const MyProfile = ({ user, show, handleShow }: MyProfilePropType) => {
+    const { showAlert } = useAlert();
     const { register, handleSubmit, reset } = useForm<FieldValues|UserUpdate>();
     const [active, setActive] = useState<number>(0);
     const [loading, setLoading] = useState<boolean>(false);
@@ -27,9 +29,7 @@ const MyProfile = ({ user, show, handleShow }: MyProfilePropType) => {
 
         setLoading(true);
         await handleUpdateUser(data.id, data)
-            .then((res) => {
-                console.log('onSubmit', res);
-            })
+            .then(() => showAlert("Profile update successfully!", "success"))
             .catch(error => {
                 console.error('onSubmit catch', error);
             })

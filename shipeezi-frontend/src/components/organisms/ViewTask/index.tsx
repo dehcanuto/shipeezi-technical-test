@@ -13,13 +13,10 @@ const ViewTask = ({ show, handleShow }: ViewTaskPropTypes) => {
 
     const fetchCommentsList = async (taskId: number) => {
         await handleListComments(taskId)
-            .then((res) => {
-                console.log('handleListComments', res, taskId);
-                setComments(res || [])
+            .then((res) => setComments(res || []))
+            .catch(error => {
+                console.error('handleListComments catch', error);
             })
-          .catch(error => {
-              console.error('handleListComments catch', error);
-          })
     };
 
     useEffect(() => {

@@ -26,7 +26,6 @@ const UserHeader = () => {
 
     useEffect(() => {
         if (user) {
-            console.log('user', user);
             const firstName = getFirstName(user.fullName);
             setUserInfos({
                 firstName: firstName,
