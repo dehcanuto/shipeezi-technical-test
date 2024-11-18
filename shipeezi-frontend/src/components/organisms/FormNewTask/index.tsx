@@ -14,7 +14,7 @@ import { FormFieldSelectOptionsPropTypes } from "../../molecules/FormFieldSelect
 import { FormNewTaskPropsType } from "./type";
 import { useAlert } from "../../../context/AlertContext";
 
-const FormNewTask = ({ show, handleShow }: FormNewTaskPropsType) => {
+const FormNewTask = ({ show, handleShow, done }: FormNewTaskPropsType) => {
     const { showAlert } = useAlert();
     const { register, handleSubmit, reset } = useForm<FieldValues>();
     const [loading, setLoading] = useState<boolean>(false);
@@ -29,6 +29,7 @@ const FormNewTask = ({ show, handleShow }: FormNewTaskPropsType) => {
         await handleCreateTask(data)
             .then(() => {
                 showAlert("Task created successfully!", "success");
+                done();
                 reset();
                 handleShow();
             })

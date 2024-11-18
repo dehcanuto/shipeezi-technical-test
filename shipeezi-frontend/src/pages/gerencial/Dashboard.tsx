@@ -11,6 +11,7 @@ import { useAlert } from "../../context/AlertContext";
 function DashboardPage() {
   const { showAlert } = useAlert();
   const [loading, setLoading] = useState<boolean>(true);
+  const [updateTasks, setUpdateTasks] = useState<boolean>(true);
 
   const [backlogTasks, setBacklogTasks] = useState<TodoCardPropsType[]>([]);
   const [todoTasks, setTodoTasks] = useState<TodoCardPropsType[]>([]);
@@ -18,7 +19,7 @@ function DashboardPage() {
   const [doneTasks, setDoneTasks] = useState<TodoCardPropsType[]>([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const handleUpdateTasks = async () => {
       await handleListTasks()
         .then((tasks) => {
           if (tasks) {
@@ -34,8 +35,9 @@ function DashboardPage() {
         });
     };
 
-    fetchData();
-  }, []);
+    handleUpdateTasks();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [updateTasks]);
 
   return (
     <GerencialLayout>
@@ -46,10 +48,22 @@ function DashboardPage() {
           </h2>
         </div>
         <div className="flex">
-          <ToDoList title="Backlog Tasks" tasks={backlogTasks} />
-          <ToDoList title="To Do Tasks" tasks={todoTasks} />
-          <ToDoList title="In Process" tasks={processTasks} />
-          <ToDoList title="Done" tasks={doneTasks} />
+          <ToDoList
+            title="Backlog Tasks"
+            tasks={backlogTasks}
+            updateTasks={() => setUpdateTasks(!updateTasks)} />
+          <ToDoList
+            title="To Do Tasks"
+            tasks={todoTasks}
+            updateTasks={() => setUpdateTasks(!updateTasks)} />
+          <ToDoList
+            title="In Process"
+            tasks={processTasks}
+            updateTasks={() => setUpdateTasks(!updateTasks)} />
+          <ToDoList
+            title="Done"
+            tasks={doneTasks}
+            updateTasks={() => setUpdateTasks(!updateTasks)} />
         </div>
       </main>
     </GerencialLayout>

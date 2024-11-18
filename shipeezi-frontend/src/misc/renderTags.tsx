@@ -12,6 +12,7 @@ export const RenderTags = ({ tags }: { tags: string | number[] }) => {
         tagsFormmated = tags;
     }
     finally {
+        if (typeof tagsFormmated === "number") tagsFormmated = [tagsFormmated];
         tagsIds = tagsFormmated.map((tagId: number) =>
             tagsTasks.find((tag) => tag.value === tagId)
         );
@@ -19,7 +20,7 @@ export const RenderTags = ({ tags }: { tags: string | number[] }) => {
 
     return (
         <div className="flex gap-1">
-            {tagsIds.map((tag: TagsTasksPropTypes, index: Key) =>
+            {tagsIds && tagsIds.map((tag: TagsTasksPropTypes, index: Key) =>
                 tag && (
                     <span
                         key={index}

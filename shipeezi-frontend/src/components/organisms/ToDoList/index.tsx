@@ -8,7 +8,7 @@ import TodoCard from "../../molecules/TodoCard";
 import FormNewTask from "../FormNewTask";
 import ViewTask from "../ViewTask";
 
-const ToDoList = ({ title, tasks }: ToDoListPropTypes) => {    
+const ToDoList = ({ title, tasks, updateTasks }: ToDoListPropTypes) => {    
     const [showForm, setShowForm] = useState<boolean>(false);
     const [showTask, setShowTask] = useState<{
         view: boolean;
@@ -53,6 +53,7 @@ const ToDoList = ({ title, tasks }: ToDoListPropTypes) => {
             <FormNewTask
                 show={showForm}
                 handleShow={() => setShowForm(!showForm)}
+                done={updateTasks}
             />
             <ViewTask 
                 show={showTask}
