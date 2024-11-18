@@ -17,7 +17,10 @@ const SignUp = () => {
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
         setLoading(true);
         await handleRegister(data as UserInfos)
-            .then(() => navigate("/signin"))
+            .then(() => {
+                showAlert("User registered successfully", "success");
+                navigate("/signin");
+            })
             .catch(error => showAlert(error, "error"))
             .finally(() => setLoading(false));
     };

@@ -22,6 +22,7 @@ const SignIn = () => {
             .then((res: LoginResponse | null) => {
                 if (res) {
                     login(res);
+                    showAlert("User logged successfully", "success");
                     navigate("/dashboard");
                 }
             })
